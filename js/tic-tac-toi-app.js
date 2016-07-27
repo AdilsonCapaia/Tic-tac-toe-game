@@ -151,18 +151,23 @@
 			$(this).append(currentPlayer);
 		}).click(function(){
 			
-			if(activeP.hasClass("player2")){
+			if(activeP.hasClass("player2") && !($(this).hasClass("box-filled-2") || $(this).hasClass("box-filled-1"))){
 				console.log("adilson 2 ");
 				$(this).children("svg").hide();
 				$(this).addClass("box-filled-2");
+				activeP = field.activePlayer();
+				currentPlayer = field.alternatePlayer();
 				
-			}else{
+			}else if(activeP.hasClass("player1") && !($(this).hasClass("box-filled-2") || $(this).hasClass("box-filled-1"))){
 				console.log("adilson 1 ");
 				$(this).children("svg").hide();
 				$(this).addClass("box-filled-1");
+				activeP = field.activePlayer();
+				currentPlayer = field.alternatePlayer();
+			}else{  
+				// do nothing
 			} 
-			activeP = field.activePlayer();
-			currentPlayer = field.alternatePlayer();
+			
 		});
 	
 	});
