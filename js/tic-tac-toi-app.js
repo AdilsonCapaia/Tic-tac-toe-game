@@ -80,7 +80,8 @@
 			
 			var p =document.createElement("p");
 			p.className ="message";
-			p.innerHTML =" Winner";
+			// we display the name of the user
+			p.innerHTML =" Winner  " + $O.text();
 			var Anchor = document.createElement("a");
 			Anchor.setAttribute("href","#");
 			Anchor.innerHTML = "New game";
@@ -115,7 +116,8 @@
 			
 			var p =document.createElement("p");
 			p.className ="message";
-			p.innerHTML =" Winner";
+			// we display the name of the user
+			p.innerHTML =" Winner  " + $X.text();
 			var Anchor = document.createElement("a");
 			Anchor.setAttribute("href","#");
 			Anchor.innerHTML = "New game";
@@ -144,6 +146,8 @@
 	//---------------------------------------------------- Board Class-------------------------------------------------------------
 	
 	// Global variables ---- "useful variables"
+	var $O = $("<li></li>");
+	var $X = $("<li></li>");
 	var ALTERNATE = 0;
 	var ACTIVEPLAYER =0;
 	
@@ -190,7 +194,19 @@
 			this.$div.append(this.$header);
 			this.$div.append(this.$ulBoard);
 			$("#start").remove();
+			//Pompt for names of the players
+			var nameO = prompt("playerO Enter your name ?");
+			var nameX = prompt("playerX Enter your name ?");
+			var $ulNames =$('<ul class="names"></ul>');
+			$O.html(nameO);
+			$X.html(nameX);
+			$ulNames.append($O);
+			$ulNames.append($X);
+			this.$header.append($ulNames);
 			$("body").prepend(this.$div);
+			
+			
+			
 		};
 		// useful array that contain the svg images X and O
 		this.alternate =[]

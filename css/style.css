@@ -14,7 +14,15 @@ h1 {
   margin: 0 auto;
   text-align: left;
   width: 1.875em; }
-
+  /* ----------------- style for names of the players -----------------  */
+.names{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-around;
+	margin-bottom:60px;
+	font-size:1.5em;
+	color:indianred;
+}
 .button {
   background: #fff;
   border-radius: 4px;
