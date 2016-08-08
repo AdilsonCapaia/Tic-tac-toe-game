@@ -182,6 +182,7 @@
 			for(var i=0; i<9 ; i++){
 				
 				var $li =$("<li>");
+				$li.addClass("item"+(i+1));
 				$li.addClass("box");
 				this.$ulBoard.append($li);
 			}
@@ -265,18 +266,45 @@
 					activeP = field.activePlayer();
 					currentPlayer = field.alternatePlayer();
 				}else{  
+					//do nothing
 				} 
 					// verify the winner
-				var end = $(".boxes li").length; 
-				$(".boxes li").each(function(){
-					if($(this).hasClass("box-filled-2") || $(this).hasClass("box-filled-1") ){
-					end--;	
-					}
-				});
-				if(end === 0){
-					game.finish();
+				if($(".item1").hasClass("box-filled-2") && $(".item2").hasClass("box-filled-2")&&$(".item3").hasClass("box-filled-2") 
+					|| $(".item4").hasClass("box-filled-2")&& $(".item5").hasClass("box-filled-2") && $(".item6").hasClass("box-filled-2")
+					|| $(".item7").hasClass("box-filled-2") && $(".item8").hasClass("box-filled-2") && $(".item9").hasClass("box-filled-2") 
+					|| $(".item1").hasClass("box-filled-2") && $(".item5").hasClass("box-filled-2") && $(".item9").hasClass("box-filled-2")
+					|| $(".item3").hasClass("box-filled-2") && $(".item5").hasClass("box-filled-2") && $(".item7").hasClass("box-filled-2")
+					|| $(".item1").hasClass("box-filled-2") && $(".item4").hasClass("box-filled-2") && $(".item7").hasClass("box-filled-2")
+					|| $(".item2").hasClass("box-filled-2") && $(".item5").hasClass("box-filled-2") && $(".item8").hasClass("box-filled-2")
+					|| $(".item3").hasClass("box-filled-2") && $(".item6").hasClass("box-filled-2") && $(".item9").hasClass("box-filled-2")){
+					// if the X player win	
+					game.winX();
 				}
-			});
+				else if($(".item1").hasClass("box-filled-1") && $(".item2").hasClass("box-filled-1")&&$(".item3").hasClass("box-filled-1") 
+					|| $(".item4").hasClass("box-filled-1")&& $(".item5").hasClass("box-filled-1") && $(".item6").hasClass("box-filled-1")
+					|| $(".item7").hasClass("box-filled-1") && $(".item8").hasClass("box-filled-1") && $(".item9").hasClass("box-filled-1") 
+					|| $(".item1").hasClass("box-filled-1") && $(".item5").hasClass("box-filled-1") && $(".item9").hasClass("box-filled-1")
+					|| $(".item3").hasClass("box-filled-1") && $(".item5").hasClass("box-filled-1") && $(".item7").hasClass("box-filled-1")
+					|| $(".item1").hasClass("box-filled-1") && $(".item4").hasClass("box-filled-1") && $(".item7").hasClass("box-filled-1")
+					|| $(".item2").hasClass("box-filled-1") && $(".item5").hasClass("box-filled-1") && $(".item8").hasClass("box-filled-1")
+					|| $(".item3").hasClass("box-filled-1") && $(".item6").hasClass("box-filled-1") && $(".item9").hasClass("box-filled-1")){
+						// if the O player win
+						game.winO();
+					
+				}else{
+					//if game have no win
+					var end = $(".boxes li").length; 
+					$(".boxes li").each(function(){
+						if($(this).hasClass("box-filled-2") || $(this).hasClass("box-filled-1") ){
+							end--;	
+						}
+					});
+					if(end === 0){
+					game.finish();
+					}
+				}
+			}); 
+			
 		});
 	
 	}//End currentGame() function
